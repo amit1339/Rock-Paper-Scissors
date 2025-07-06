@@ -60,3 +60,55 @@ function updateResult(result) {
 function updateScore() {
     document.querySelector(".js-score").textContent = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
 }
+
+function MakeCounter() {
+    let count = 0;
+    return {
+        increment: () => {
+            count += 1;
+            console.log(`Count: ${count}`);
+        }
+    }
+}
+
+function factorial(n) {
+    let result = n;
+    while (n > 1) {
+        result *= n - 1;
+        n -= 1;
+    }
+    return result;
+}
+
+function isAnagram(s, t) {
+    if (s.length !== t.length) {
+        return false;
+    }
+    let charCount = new Map();
+    for (let char of s) {
+        charCount.set(char, (charCount.get(char) || 0) + 1);
+    }
+    for (let char of t) {
+        if (!charCount.has(char) || charCount.get(char) === 0) {
+            return false;
+        }
+        charCount.set(char, charCount.get(char) - 1);
+    }
+    return true;
+    
+}
+
+function topKFrequent(nums,k)
+{
+    let charCount = new Map();
+    for (let num of nums) {
+        charCount.set(num, (charCount.get(num) || 0) + 1);
+    }
+    charCount = new Map([...charCount.entries()].sort((a, b) => b[1] - a[1]));
+    return Array.from(charCount.keys()).slice(0, k);
+}
+
+
+console.log(isAnagram("anagram", "nagaram")); // Output: true
+console.log(isAnagram("rat", "car")); // Output: false
+console.log(topKFrequent([1, 1, 1, 2, 2, 3], 2)); // Output: [1, 2]
